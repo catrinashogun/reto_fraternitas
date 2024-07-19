@@ -35,6 +35,8 @@ resource "aws_lambda_permission" "apigateway_invocation" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.fraternitas_lambda.function_name
-  principal     = "apigateway.amazonaws.com"
+  principal = {
+    Service = "apigateway.amazonaws.com"
+  }
   source_arn    = "arn:aws:execute-api:${var.region}:${data.aws_caller_identity.current.account_id}:${aws_apigatewayv2_api.fraternitas_api.id}/*/*/"
 }
