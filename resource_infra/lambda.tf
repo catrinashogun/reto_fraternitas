@@ -26,5 +26,5 @@ resource "aws_lambda_function" "fraternitas_lambda" {
   role             = aws_iam_role.fraternitas_lambda_role.arn
   handler          = "dist/handler.handler"
   runtime          = "nodejs18.x"
-  source_code_hash = filebase64sha256("../lambda_nozip/.serverless/fraternitas.zip")
+  source_code_hash = filebase64sha256(var.lambda_package_path)
 }
