@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   deploy-and-build:
@@ -38,7 +35,7 @@ jobs:
       - name: Destroy existing infrastructure
         working-directory: ./resource_infra
         run: terraform destroy -auto-approve
-        
+
       - name: Terraform Plan
         id: plan
         working-directory: ./resource_infra
