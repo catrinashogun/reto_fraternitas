@@ -40,8 +40,12 @@ jobs:
         id: plan
         working-directory: ./resource_infra
         run: terraform plan -out=tfplan
-        run: terraform state rm aws_lambda_permission.my_lambda_func
 
+      - name: Terraform remove persistent
+        id: plan
+        working-directory: ./resource_infra
+        run: terraform state rm aws_lambda_permission.my_lambda_func
+        
       - name: Apply Terraform Plan
         if: github.ref == 'refs/heads/main'
         working-directory: ./resource_infra
