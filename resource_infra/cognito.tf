@@ -1,3 +1,8 @@
+variable "region" {
+  description = "The AWS region to use."
+  default     = "us-east-1"
+}
+
 resource "aws_cognito_user_pool" "fraternitas_user_pool" {
   name = "fraternitas_user_pool"
 
@@ -16,8 +21,9 @@ resource "aws_cognito_user_pool" "fraternitas_user_pool" {
 resource "aws_cognito_user_pool_client" "fraternitas_user_pool_client" {
   name                           = "fraternitas_user_pool_client"
   user_pool_id                   = aws_cognito_user_pool.fraternitas_user_pool.id
+  generate_secret                = true
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows            = ["code"]
+  allowed_oauth_flows            = ["client_credentials"]
   allowed_oauth_scopes           = ["email", "openid", "profile"]
   callback_urls                  = ["https://example.com/callback"]
 }
