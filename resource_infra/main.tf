@@ -9,4 +9,12 @@ terraform {
       version = "~> 3.0"
     }
   }
+
+  backend "s3" {
+    bucket         = "fraternitas-state"
+    key            = "terraform/state"
+    region         = "us-east-1"
+    dynamodb_table = "fraternitas-locks"
+    encrypt        = true
+  }
 }
