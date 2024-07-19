@@ -7,11 +7,6 @@ resource "aws_lambda_function" "fraternitas_lambda" {
   runtime       = "nodejs18.x"
   filename      = var.lambda_package_path
   source_code_hash = filebase64sha256(var.lambda_package_path)
-  environment {
-    variables = {
-      NODE_ENV = "production"
-    }
-  }
 }
 
 resource "aws_iam_role" "fraternitas_lambda_role" {
