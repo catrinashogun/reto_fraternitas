@@ -1,8 +1,3 @@
-variable "region" {
-  description = "The AWS region to use."
-  default     = "us-east-1"
-}
-
 resource "aws_cognito_user_pool" "fraternitas_user_pool" {
   name = "fraternitas_user_pool"
 
