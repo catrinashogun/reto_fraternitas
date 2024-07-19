@@ -1,3 +1,41 @@
+# Ignore files for JavaScript/TypeScript project inside lambda_nozip
+
+# Node.js dependencies
+lambda_nozip/node_modules/
+lambda_nozip/npm-debug.log
+lambda_nozip/yarn-error.log
+
+# Build output
+lambda_nozip/dist/
+lambda_nozip/build/
+lambda_nozip/coverage/
+
+# TypeScript
+lambda_nozip/*.tsbuildinfo
+
+# Logs
+lambda_nozip/logs
+lambda_nozip/*.log
+lambda_nozip/npm-debug.log*
+lambda_nozip/yarn-debug.log*
+lambda_nozip/yarn-error.log*
+
+# Environment variables
+lambda_nozip/.env
+
+# macOS
+lambda_nozip/.DS_Store
+
+# Windows
+lambda_nozip/Thumbs.db
+lambda_nozip/ehthumbs.db
+lambda_nozip/Desktop.ini
+
+# IDEs and editors
+lambda_nozip/.idea/
+lambda_nozip/.vscode/
+lambda_nozip/*.swp
+
 # Ignore files for Terraform project inside resource_infra
 
 # Local .terraform directories
