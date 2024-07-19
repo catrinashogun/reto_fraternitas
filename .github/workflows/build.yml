@@ -32,6 +32,11 @@ jobs:
         working-directory: ./resource_infra
         run: terraform init
 
+      - name: Terraform remove persistent
+        id: remove-persistent
+        working-directory: ./resource_infra
+        run: terraform state rm aws_lambda_permission.my_lambda_func
+        
       - name: Destroy existing infrastructure
         working-directory: ./resource_infra
         run: terraform destroy -auto-approve
@@ -40,11 +45,6 @@ jobs:
         id: plan
         working-directory: ./resource_infra
         run: terraform plan -out=tfplan
-
-      - name: Terraform remove persistent
-        id: remove-persistent
-        working-directory: ./resource_infra
-        run: terraform state rm aws_lambda_permission.my_lambda_func
         
       - name: Apply Terraform Plan
         if: github.ref == 'refs/heads/main'
