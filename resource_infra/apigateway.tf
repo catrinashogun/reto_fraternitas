@@ -30,7 +30,7 @@ resource "aws_apigatewayv2_authorizer" "fraternitas_cognito_authorizer" {
   identity_sources = ["$request.header.Authorization"]
   jwt_configuration {
     audience = [aws_cognito_user_pool_client.fraternitas_user_pool_client.id]
-    issuer   = "https://${aws_cognito_user_pool_domain.fraternitas_user_pool_domain.domain}.auth.${var.region}.amazoncognito.com"
+    issuer   = "https://cognito-idp.${var.region}.amazonaws.com/${aws_cognito_user_pool.fraternitas_user_pool.id}"
   }
   name = "fraternitas_cognito_authorizer"
 }
