@@ -1,3 +1,8 @@
+variable "region" {
+  description = "The AWS region to use."
+  default     = "us-east-1"
+}
+
 resource "aws_cognito_user_pool" "fraternitas_user_pool" {
   name = "fraternitas_user_pool"
 }
@@ -12,6 +17,6 @@ resource "aws_cognito_user_pool_client" "fraternitas_user_pool_client" {
 }
 
 resource "aws_cognito_user_pool_domain" "fraternitas_user_pool_domain" {
-  domain       = "fraternitas-user-pool-domain"
+  domain       = "fraternitas-unique-domain"
   user_pool_id = aws_cognito_user_pool.fraternitas_user_pool.id
 }
