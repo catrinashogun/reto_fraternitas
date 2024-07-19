@@ -1,0 +1,59 @@
+name: Deploy Infrastructure and Build Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Change to your preferred Node.js version
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Initialize Terraform
+        working-directory: ./resource_infra
+        run: terraform init
+
+      - name: Apply Terraform
+        working-directory: ./resource_infra
+        run: terraform apply -auto-approve
+
+      - name: Install dependencies
+        working-directory: ./lambda_nozip
+        run: npm install
+
+      - name: Build project
+        working-directory: ./lambda_nozip
+        run: npm run build
+
+      - name: Package with Serverless
+        working-directory: ./lambda_nozip
+        run: npx serverless package
+
+      - name: Upload Serverless artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: serverless-package
+          path: lambda_nozip/.serverless/
+
+      - name: Update Terraform with Built Lambda
+        working-directory: ./resource_infra
+        run: terraform apply -auto-approve -var lambda_package_path=../lambda_nozip/.serverless/<your-lambda-package-file-name>.zip
+
+      - name: Finalize Terraform Deployment
+        working-directory: ./resource_infra
+        run: terraform apply -auto-approve
