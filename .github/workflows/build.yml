@@ -63,10 +63,6 @@ jobs:
           name: serverless-package
           path: lambda_nozip/.serverless/
 
-      - name: Update Terraform with Built Lambda
-        working-directory: ./resource_infra
-        run: terraform apply -auto-approve -var lambda_package_path=../lambda_nozip/.serverless/<your-lambda-package-file-name>.zip
-
       - name: Finalize Terraform Deployment
         working-directory: ./resource_infra
         run: terraform apply -auto-approve
