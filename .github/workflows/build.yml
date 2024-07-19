@@ -32,14 +32,14 @@ jobs:
         working-directory: ./resource_infra
         run: terraform init
 
-      - name: Terraform remove persistent
-        id: remove-persistent
-        working-directory: ./resource_infra
-        run: terraform state rm aws_lambda_permission.apigateway_invocation
+      # - name: Terraform remove persistent
+      #   id: remove-persistent
+      #   working-directory: ./resource_infra
+      #   run: terraform state rm aws_lambda_permission.apigateway_invocation
         
-      - name: Destroy existing infrastructure
-        working-directory: ./resource_infra
-        run: terraform destroy -auto-approve
+      # - name: Destroy existing infrastructure
+      #   working-directory: ./resource_infra
+      #   run: terraform destroy -auto-approve
 
       - name: Terraform Plan
         id: plan
