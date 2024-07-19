@@ -35,7 +35,7 @@ jobs:
       - name: Terraform remove persistent
         id: remove-persistent
         working-directory: ./resource_infra
-        run: terraform state rm aws_lambda_permission.my_lambda_func
+        run: terraform state rm aws_lambda_permission.apigateway_invocation
         
       - name: Destroy existing infrastructure
         working-directory: ./resource_infra
