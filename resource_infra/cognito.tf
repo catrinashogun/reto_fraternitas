@@ -19,7 +19,7 @@ resource "aws_cognito_user_pool_client" "fraternitas_user_pool_client" {
   generate_secret                = true
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows            = ["client_credentials"]
-  allowed_oauth_scopes           = ["email", "profile"]
+  allowed_oauth_scopes           = ["fraternitas/sec"]
   callback_urls                  = ["https://example.com/callback"]
 }
 
