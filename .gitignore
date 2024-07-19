@@ -1,0 +1,31 @@
+# Ignore files for Terraform project inside resource_infra
+
+# Local .terraform directories
+resource_infra/.terraform/
+resource_infra/.terraform/*
+
+# .tfstate files
+resource_infra/*.tfstate
+resource_infra/*.tfstate.*
+
+# Crash log files
+resource_infra/crash.log
+resource_infra/crash.*.log
+
+# Plan output files
+resource_infra/*.tfplan
+
+# Binary and other output files
+resource_infra/*.zip
+resource_infra/*.tar.gz
+resource_infra/*.tar
+resource_infra/*.out
+
+# Ignore override files as they are for local configuration
+resource_infra/override.tf
+resource_infra/override.tf.json
+resource_infra/*_override.tf
+resource_infra/*_override.tf.json
+
+# Include tfvars files that are user-specific
+resource_infra/*.tfvars
