@@ -13,6 +13,22 @@ resource "aws_cognito_user_pool" "fraternitas_user_pool" {
   }
 }
 
+resource "aws_cognito_user_pool_domain" "fraternitas_user_pool_domain" {
+  domain       = "fraternitas-unique-domain"  # Replace this with your unique domain name
+  user_pool_id = aws_cognito_user_pool.fraternitas_user_pool.id
+}
+
+resource "aws_cognito_resource_server" "fraternitas_resource_server" {
+  identifier   = "fraternitas"
+  name         = "fraternitas_resource_server"
+  user_pool_id = aws_cognito_user_pool.fraternitas_user_pool.id
+
+  scope {
+    scope_name        = "sec"
+    scope_description = "Custom scope for client credentials fraternitas"
+  }
+}
+
 resource "aws_cognito_user_pool_client" "fraternitas_user_pool_client" {
   name                           = "fraternitas_user_pool_client"
   user_pool_id                   = aws_cognito_user_pool.fraternitas_user_pool.id
@@ -21,9 +37,4 @@ resource "aws_cognito_user_pool_client" "fraternitas_user_pool_client" {
   allowed_oauth_flows            = ["client_credentials"]
   allowed_oauth_scopes           = ["fraternitas/sec"]
   callback_urls                  = ["https://example.com/callback"]
-}
-
-resource "aws_cognito_user_pool_domain" "fraternitas_user_pool_domain" {
-  domain       = "fraternitas-unique-domain"  # Replace this with your unique domain name
-  user_pool_id = aws_cognito_user_pool.fraternitas_user_pool.id
 }
