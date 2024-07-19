@@ -1,0 +1,22 @@
+service: fraternitas
+
+provider:
+  name: aws
+  runtime: nodejs20x
+  region: us-east-1
+
+functions:
+  app:
+    handler: dist/handler.handler
+    events:
+      - http:
+          path: /
+          method: get
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: './webpack.config.js'
+    includeModules: true

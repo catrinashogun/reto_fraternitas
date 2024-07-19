@@ -1,0 +1,28 @@
+{
+  "name": "hello_world",
+  "version": "1.0.0",
+  "description": "Fraternitas challenge",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "ts-node src/app.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-serverless-express": "^3.3.9",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.11",
+    "serverless-webpack": "^5.14.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "express": "^4.19.2"
+  }
+}
