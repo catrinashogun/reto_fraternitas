@@ -21,7 +21,7 @@ resource "aws_iam_role_policy_attachment" "fraternitas_lambda_policy" {
 }
 
 resource "aws_lambda_function" "fraternitas_lambda" {
-  filename         = "lambda.zip"
+  filename         = var.lambda_package_path
   function_name    = "fraternitas_lambda"
   role             = aws_iam_role.fraternitas_lambda_role.arn
   handler          = "dist/handler.handler"
