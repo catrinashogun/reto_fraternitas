@@ -37,4 +37,8 @@ resource "aws_cognito_user_pool_client" "fraternitas_user_pool_client" {
   allowed_oauth_flows            = ["client_credentials"]
   allowed_oauth_scopes           = ["fraternitas/sec"]
   callback_urls                  = ["https://example.com/callback"]
+
+  depends_on = [
+    aws_cognito_resource_server.fraternitas_resource_server
+  ]
 }
